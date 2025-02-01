@@ -26,7 +26,7 @@ export default function MenuButtons() {
   return (
     <View style={styles.container}>
       {items.map((item, index) => (
-        <View style={styles.buttonContainer}>
+        <View key={item.id} style={styles.buttonContainer}>
           <TouchableOpacity
             style={{
               ...styles.button,
