@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useRouter } from "expo-router";
+
+type AppRoutes = "/MeetingRoom" | "/join" | "/schedule" | "/sharescreen";
 
 type FontAwesomeIconName =
   | "video-camera"
@@ -13,16 +16,30 @@ interface MenuItem {
   name: FontAwesomeIconName;
   title: string;
   customColor?: string;
+  route?: AppRoutes;
 }
 
 const items: MenuItem[] = [
-  { id: 1, name: "video-camera", title: "New Meeting", customColor: "#ff751f" },
+  {
+    id: 1,
+    name: "video-camera",
+    title: "New Meeting",
+    customColor: "#ff751f",
+    route: "/MeetingRoom",
+  },
   { id: 2, name: "plus-square", title: "Join" },
   { id: 3, name: "calendar", title: "Schedule" },
   { id: 4, name: "upload", title: "Share Screen" },
 ];
 
 export default function MenuButtons() {
+  const router = useRouter();
+
+  const handlePress = (route?: AppRoutes) => {
+    if (route) {
+      router.push(route as any);
+    }
+  };
   return (
     <View style={styles.container}>
       {items.map((item, index) => (
@@ -32,6 +49,7 @@ export default function MenuButtons() {
               ...styles.button,
               backgroundColor: item.customColor ? item.customColor : "#0470dc",
             }}
+            onPress={() => handlePress(item.route)}
           >
             <FontAwesome name={item.name} size={24} color="#efefef" />
           </TouchableOpacity>

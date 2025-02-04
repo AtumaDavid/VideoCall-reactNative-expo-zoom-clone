@@ -45,7 +45,20 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(tabs)"
+        options={{ headerShown: false, title: "Home" }}
+      />
+      <Stack.Screen
+        name="MeetingRoom"
+        options={{
+          headerShown: true,
+          title: "Meeting Room",
+          headerStyle: { backgroundColor: "#1c1c1c" },
+          headerTitleStyle: { color: "#fff" },
+          headerTintColor: "#fff",
+        }}
+      />
     </Stack>
   );
 }
