@@ -1,0 +1,2 @@
+- npm i socket.io-client --save
+- npx expo install expo-camera
